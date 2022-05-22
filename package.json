@@ -6,6 +6,8 @@
   },
   "scripts": {
     "migrate": "npx sequelize-cli db:migrate",
-    "undo": "npx sequelize-cli db:migrate:undo"
+    "seed": "npx sequelize-cli db:seed:all",
+    "seed-undo": "npx sequelize-cli db:seed:undo",
+    "migrate-undo": "npx sequelize-cli db:migrate:undo"
   }
 }
