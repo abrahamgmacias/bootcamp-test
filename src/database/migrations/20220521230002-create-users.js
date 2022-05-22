@@ -1,9 +1,21 @@
 'use strict';
 
-const { DataTypes } = require("sequelize/types");
+const { DataTypes } = require("sequelize");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('business_unit', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      name: {
+        type: Sequelize.STRING
+      }
+    });
+
     await queryInterface.createTable('users', {
       id: {
         allowNull: false,
@@ -37,18 +49,6 @@ module.exports = {
           model: 'business_unit',
           key: 'id'
         }
-      }
-    });
-
-    await queryInterface.createTable('business_unit', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      name: {
-        type: Sequelize.STRING
       }
     });
   },
