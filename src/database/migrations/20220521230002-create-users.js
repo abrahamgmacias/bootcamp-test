@@ -15,22 +15,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      second_name: {
-        type: Sequelize.STRING
-      },
       last_name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      second_last_name: {
-        type: Sequelize.STRING
-      },
       role: {
         type: Sequelize.STRING,
-        allowNull: false
-      },
-      privileges: {
-        type: DataTypes.ARRAY(),
         allowNull: false
       },
       email: {
@@ -41,19 +31,24 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      payment_period_id: {
+      business_unit_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        references: {
+          model: 'business_unit',
+          key: 'id'
+        }
+      }
+    });
+
+    await queryInterface.createTable('business_unit', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
       },
-      business_unit: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      on_leave: {
-        type: Sequelize.BOOLEAN
-      },
-      active: {
-        type: Sequelize.BOOLEAN
+      name: {
+        type: Sequelize.STRING
       }
     });
   },
