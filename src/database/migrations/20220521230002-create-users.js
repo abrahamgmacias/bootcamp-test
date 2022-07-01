@@ -13,6 +13,10 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING
+      },
+      role_id: {
+        type: Sequelize.STRING,
+        allowNull: false
       }
     });
 
