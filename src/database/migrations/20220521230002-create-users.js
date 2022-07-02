@@ -1,25 +1,7 @@
 'use strict';
 
-const { DataTypes } = require("sequelize");
-
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('business_unit', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      name: {
-        type: Sequelize.STRING
-      },
-      role_id: {
-        type: Sequelize.STRING,
-        allowNull: false
-      }
-    });
-
     await queryInterface.createTable('users', {
       id: {
         allowNull: false,
@@ -27,36 +9,26 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false
+      first_name: {
+        type: Sequelize.STRING
       },
-      last_name: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      role: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      business_unit_id: {
+      role_id: {
         type: Sequelize.INTEGER,
-        references: {
-          model: 'business_unit',
-          key: 'id'
-        }
+        allowNull: false
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: new Date()
+      },
+      updatedAt: {
+        allowNull: true,
+        type: Sequelize.DATE
       }
-    });
+    })
   },
+
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropAllTables();
+    await queryInterface.bulkDelete("users", null, {});
   }
 };
